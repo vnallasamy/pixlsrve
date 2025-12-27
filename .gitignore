@@ -1,0 +1,68 @@
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+vendor/
+
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+*.g.dart
+*.freezed.dart
+
+# Mobile
+*.apk
+*.aab
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Keys and secrets
+*.key
+*.pem
+*.p12
+wg*.conf
+secrets/
+.env
+
+# Logs
+*.log
+logs/
+
+# Thumbnails cache
+thumbnails/
+cache/
+
+# Build artifacts
+dist/
+out/
+*.msi
+*.pkg
+*.dmg
+*.zip
+*.tar.gz
