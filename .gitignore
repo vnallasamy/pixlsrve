@@ -9,6 +9,10 @@
 go.work
 vendor/
 
+# Host binary
+host/pixlsrve
+host/pixlsrve-*
+
 # Flutter/Dart
 .dart_tool/
 .flutter-plugins

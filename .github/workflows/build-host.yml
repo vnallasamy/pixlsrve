@@ -1,0 +1,84 @@
+name: Build Host Application
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'host/**'
+      - '.github/workflows/build-host.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'host/**'
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.21'
+
+    - name: Cache Go modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
+    - name: Install dependencies (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc libsqlite3-dev
+
+    - name: Download dependencies
+      working-directory: ./host
+      run: go mod download
+
+    - name: Build
+      working-directory: ./host
+      run: |
+        go build -v -o pixlsrve${{ matrix.os == 'windows-latest' && '.exe' || '' }} ./cmd/pixlsrve
+
+    - name: Test
+      working-directory: ./host
+      run: go test -v ./...
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: pixlsrve-${{ matrix.os }}
+        path: |
+          host/pixlsrve${{ matrix.os == 'windows-latest' && '.exe' || '' }}
+        retention-days: 7
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.21'
+
+    - name: Run golangci-lint
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: latest
+        working-directory: ./host
