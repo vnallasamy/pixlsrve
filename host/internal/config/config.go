@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+
+	"github.com/google/uuid"
 )
 
 // Config holds all application configuration
