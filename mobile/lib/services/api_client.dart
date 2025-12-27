@@ -41,6 +41,13 @@ class APIClient extends ChangeNotifier {
     };
   }
 
+  // Public method to get auth headers for image requests
+  Map<String, String> getAuthHeaders() {
+    return {
+      if (_apiToken != null) 'Authorization': 'Bearer $_apiToken',
+    };
+  }
+
   Future<Map<String, dynamic>> getDiscoveryInfo() async {
     if (_baseUrl == null) throw Exception('API not configured');
 

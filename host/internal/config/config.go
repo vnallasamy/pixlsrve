@@ -175,7 +175,5 @@ func (c *Config) Save(path string) error {
 
 // generateHostID generates a unique host ID
 func generateHostID() string {
-	// In production, this should be a proper UUID
-	// For now, use a timestamp-based ID
-	return fmt.Sprintf("host-%d", os.Getpid())
+	return uuid.New().String()
 }

@@ -110,7 +110,7 @@ class _AlbumPhotosScreenState extends State<AlbumPhotosScreen> {
       child: Image.network(
         apiClient.getThumbnailUrl(photo.id, size: 'small'),
         fit: BoxFit.cover,
-        headers: {'Authorization': 'Bearer ${apiClient._apiToken}'},
+        headers: apiClient.getAuthHeaders(),
         errorBuilder: (context, error, stackTrace) {
           return Container(
             color: Colors.grey[300],
@@ -137,7 +137,7 @@ class _AlbumPhotosScreenState extends State<AlbumPhotosScreen> {
               maxScale: 4.0,
               child: Image.network(
                 apiClient.getFullPhotoUrl(photo.id),
-                headers: {'Authorization': 'Bearer ${apiClient._apiToken}'},
+                headers: apiClient.getAuthHeaders(),
                 errorBuilder: (context, error, stackTrace) {
                   return const Column(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -117,7 +117,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
                       apiClient.getThumbnailUrl(album.coverPhotoId!, size: 'medium'),
                       fit: BoxFit.cover,
                       width: double.infinity,
-                      headers: {'Authorization': 'Bearer ${apiClient._apiToken}'},
+                      headers: apiClient.getAuthHeaders(),
                       errorBuilder: (context, error, stackTrace) {
                         return Container(
                           color: Colors.grey[300],
