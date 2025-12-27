@@ -1,0 +1,67 @@
+name: pixlsrve
+description: Personal Photo Host mobile app with automatic LAN/VPN switching
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI
+  cupertino_icons: ^1.0.2
+  
+  # State Management
+  provider: ^6.1.1
+  
+  # Networking
+  http: ^1.1.0
+  dio: ^5.4.0
+  
+  # Network Discovery
+  multicast_dns: ^0.3.2
+  
+  # VPN (WireGuard)
+  wireguard_flutter: ^0.2.0
+  
+  # Storage
+  shared_preferences: ^2.2.2
+  flutter_secure_storage: ^9.0.0
+  path_provider: ^2.1.1
+  
+  # Image handling
+  cached_network_image: ^3.3.0
+  photo_view: ^0.14.0
+  
+  # Utils
+  uuid: ^4.2.1
+  qr_code_scanner: ^1.0.1
+  qr_flutter: ^4.1.0
+  connectivity_plus: ^5.0.2
+  permission_handler: ^11.1.0
+  
+  # Platform channels for native VPN
+  flutter_vpn: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+
+  # assets:
+  #   - images/
+
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
